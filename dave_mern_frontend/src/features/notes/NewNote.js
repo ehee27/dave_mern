@@ -1,13 +1,21 @@
-import { useSelector } from 'react-redux';
-import { selectAllUsers } from '../users/usersApiSlice';
-import NewNoteForm from './NewNoteForm';
+// import { useSelector } from 'react-redux'
+// import { selectAllUsers } from '../users/usersApiSlice'
+import NewNoteForm from './NewNoteForm'
+import { useGetUsersQuery } from '../users/usersApiSlice'
+import PulseLoader from 'react-spinners/PulseLoader'
 
 const NewNote = () => {
-  //
-  const users = useSelector(selectAllUsers);
-  const content = users ? <NewNoteForm users={users} /> : <p>Loading...</p>;
-  //
-  return content;
-};
+  const { users } = useGetUsersQuery('usersList', {
+    selectFromResult: ({ data }) => ({
+      users: data?.ids.map(id => data?.entities[id]),
+    }),
+  })
 
-export default NewNote;
+  if (!users?.length) return <PulseLoader color={'#FFF'} />
+  //
+  const content = <NewNoteForm users={users} />
+  //
+  return content
+}
+
+export default NewNote

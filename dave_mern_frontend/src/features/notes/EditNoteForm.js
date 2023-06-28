@@ -1,55 +1,57 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useUpdateNoteMutation, useDeleteNoteMutation } from './notesApiSlice';
-import { faSave, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useUpdateNoteMutation, useDeleteNoteMutation } from './notesApiSlice'
+import { faSave, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import useAuth from '../../hooks/useAuth'
 
 const EditNoteForm = ({ note, users }) => {
+  const { isManager, isAdmin } = useAuth()
   //
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   //
   const [updateNote, { isLoading, isSuccess, isError, error }] =
-    useUpdateNoteMutation();
+    useUpdateNoteMutation()
   //
   const [
     deleteNote,
     { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
-  ] = useDeleteNoteMutation();
+  ] = useDeleteNoteMutation()
   //
   // state vars
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [completed, setCompleted] = useState(note.completed);
-  const [userId, setUserId] = useState(note.user);
+  const [title, setTitle] = useState(note.title)
+  const [text, setText] = useState(note.text)
+  const [completed, setCompleted] = useState(note.completed)
+  const [userId, setUserId] = useState(note.user)
   //
   useEffect(() => {
-    if (isSuccess) {
-      setTitle('');
-      setText('');
-      setUserId('');
-      navigate('/dash/notes');
+    if (isSuccess || isDelSuccess) {
+      setTitle('')
+      setText('')
+      setUserId('')
+      navigate('/dash/notes')
     }
-  }, [isSuccess, isDelSuccess, navigate]);
+  }, [isSuccess, isDelSuccess, navigate])
 
-  const onTitleChanged = e => setTitle(e.target.value);
-  const onTextChanged = e => setText(e.target.value);
-  const onCompletedChanged = e => setCompleted(prev => !prev);
-  const onUserIdChanged = e => setUserId(e.target.value);
+  const onTitleChanged = e => setTitle(e.target.value)
+  const onTextChanged = e => setText(e.target.value)
+  const onCompletedChanged = e => setCompleted(prev => !prev)
+  const onUserIdChanged = e => setUserId(e.target.value)
   //
 
   // alternative to calling '&' a bunch. All in an Array and use '.every'
-  const canSave = [title, text].every(Boolean) && !isLoading;
+  const canSave = [title, text].every(Boolean) && !isLoading
 
   const onUpdateNoteClicked = async e => {
-    e.preventDefault();
+    e.preventDefault()
     if (canSave) {
-      await updateNote({ id: note.id, user: userId, title, text, completed });
+      await updateNote({ id: note.id, user: userId, title, text, completed })
     }
-  };
+  }
   //
   const onDeleteNoteClicked = async () => {
-    await deleteNote({ id: note.id });
-  };
+    await deleteNote({ id: note.id })
+  }
   //
   const created = new Date(note.createdAt).toLocaleString('en-US', {
     day: 'numeric',
@@ -58,7 +60,7 @@ const EditNoteForm = ({ note, users }) => {
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
-  });
+  })
   //
   const updated = new Date(note.updatedAt).toLocaleString('en-US', {
     day: 'numeric',
@@ -67,7 +69,7 @@ const EditNoteForm = ({ note, users }) => {
     hour: 'numeric',
     minute: 'numeric',
     second: 'numeric',
-  });
+  })
   //
   const options = users.map(user => {
     return (
@@ -75,15 +77,27 @@ const EditNoteForm = ({ note, users }) => {
         {' '}
         {user.username}
       </option>
-    );
-  });
+    )
+  })
   //
   //classes that we may or may not want to apply
-  const errClass = isError || isDelError ? 'errmsg' : 'offscreen';
-  const validTitleClass = !title ? 'form__input--incomplete' : '';
-  const validTextClass = !text ? 'form__input--incomplete' : '';
-  const errContent = (error?.data?.message || delerror?.data?.message) ?? '';
+  const errClass = isError || isDelError ? 'errmsg' : 'offscreen'
+  const validTitleClass = !title ? 'form__input--incomplete' : ''
+  const validTextClass = !text ? 'form__input--incomplete' : ''
+  const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
   //
+  let deleteButton = null
+  if (isManager || isAdmin) {
+    deleteButton = (
+      <button
+        className="icon-button"
+        title="Delete"
+        onClick={onDeleteNoteClicked}
+      >
+        <FontAwesomeIcon icon={faTrashCan} />
+      </button>
+    )
+  }
   const content = (
     <>
       <p className={errClass}>{errContent}</p>
@@ -100,13 +114,7 @@ const EditNoteForm = ({ note, users }) => {
             >
               <FontAwesomeIcon icon={faSave} />
             </button>
-            <button
-              className="icon-button"
-              title="Delete"
-              onClick={onDeleteNoteClicked}
-            >
-              <FontAwesomeIcon icon={faTrashCan} />
-            </button>
+            {deleteButton}
           </div>
         </div>
         <label className="form__label" htmlFor="title">
@@ -181,9 +189,9 @@ const EditNoteForm = ({ note, users }) => {
         </div>
       </form>
     </>
-  );
+  )
 
-  return content;
-};
+  return content
+}
 
-export default EditNoteForm;
+export default EditNoteForm

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Oswald:wght@300&family=Kanit:wght@200&family=Staatliches&family=Orbit&&family=Russo+One&display=swap');
 
 * {
   margin: 0;
@@ -10,7 +10,8 @@
 
 :root {
   /* COLORS */
-  --BGCOLOR: #0f172a;
+  /* --BGCOLOR: #0f172a; */
+  --BGCOLOR: #000000e4;
   --BORDER-COLOR: #fff;
   --COLOR: #fff;
   --ERROR: firebrick;
@@ -18,10 +19,12 @@
   --LINK-COLOR: whitesmoke;
   --LINK-HOVER: rgba(245, 245, 245, 0.9);
   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
+
   --STATUS-COMPLETE: limegreen;
   --STATUS-OPEN: firebrick;
   --TABLE-BGCOLOR: #fff;
   --TABLE-COLOR: #000;
+  --FOOTER-COLOR: #0e190e;
 }
 
 /* || UTILITY CLASSES */
@@ -33,6 +36,11 @@
   margin-bottom: 0.5em;
 }
 
+.errmsg a:any-link {
+  color: var(--ERROR);
+  text-decoration: underline;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -40,7 +48,7 @@
 .icon-button {
   width: 48px;
   height: 48px;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   background-color: transparent;
   border: none;
   color: var(--COLOR);
@@ -60,13 +68,15 @@
 /* || GENERAL STYLES */
 
 body {
-  font-family: 'Nunito', sans-serif;
+  /* font-family: 'Nunito', sans-serif; */
+  font-family: 'Oswald', sans-serif;
+
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  /* background-image: url('./img/background.jpg'); */
   /* background-image: url('./img/WallpaperDog-20536906.png'); */
-  background-image: url('./img/techWallpaper.png');
+  /* background-image: url('./img/techWallpaper.png'); */
+  background-image: url('./img/modern-interior-data-center.jpeg');
 
   background-size: cover;
   background-position: top right;
@@ -128,7 +138,10 @@ a:focus-visible {
 }
 
 .welcome a::before {
-  content: '➜ ';
+  content: '  ';
+}
+.welcome .icon {
+  margin-right: 10px;
 }
 
 /* || DASH HEADER, CONTAINER & FOOTER */
@@ -139,7 +152,11 @@ a:focus-visible {
   z-index: 1;
   background-color: var(--BGCOLOR);
   padding: 0 0.5em;
-  border-bottom: 1px solid var(--BORDER-COLOR);
+  /* border-bottom: 1px solid var(--BORDER-COLOR); */
+  border-bottom: 3px solid dodgerblue;
+}
+.dash-header__title {
+  font-family: 'Russo One', sans-serif;
 }
 
 .dash-header__container {
@@ -166,7 +183,7 @@ a:focus-visible {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--BGCOLOR);
+  /* background-color: var(--FOOTER-COLOR); */
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;

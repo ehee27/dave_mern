@@ -1,5 +1,6 @@
-import { useGetUsersQuery } from './usersApiSlice';
-import User from './User';
+import { useGetUsersQuery } from './usersApiSlice'
+import User from './User'
+import PulseLoader from 'react-spinners/PulseLoader'
 
 const UsersList = () => {
   // destrcuture the users data status and alias 'users'
@@ -9,32 +10,31 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery(undefined, {
+  } = useGetUsersQuery('usersList', {
     pollingInterval: 60000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
-  });
+  })
 
-  let content;
-  if (isLoading) content = <p>Loading...</p>;
+  let content
+  if (isLoading) content = <PulseLoader color={'#FFF'} />
   //
   if (isError) {
     content = (
       <p className="{isError ? 'errmsg' : 'offscreen}">
         {error?.data?.message}
       </p>
-    );
+    )
   }
   //
   if (isSuccess) {
     // desctructuring the ids array
-    const { ids } = users;
+    const { ids } = users
     // create a 'table content' variable - essentially user data
     // check for ids length - because it's an array
-    const tableContent = ids?.length
-      ? // map the ids array and inject our User components by passing the userId
-        ids.map(userId => <User key={userId} userId={userId} />)
-      : null;
+    // map the ids array and inject our User components by passing the userId
+    const tableContent =
+      ids?.length && ids.map(userId => <User key={userId} userId={userId} />)
 
     // format a table with column headings
     content = (
@@ -55,10 +55,10 @@ const UsersList = () => {
         {/* // use the tableContent variable  */}
         <tbody>{tableContent}</tbody>
       </table>
-    );
+    )
     // return the overall content variable we just setup
-    return <section>{content}</section>;
+    return <section>{content}</section>
   }
-};
+}
 
-export default UsersList;
+export default UsersList

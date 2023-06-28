@@ -1,44 +1,46 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
-import { useAddNewNoteMutation } from './notesApiSlice';
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSave } from '@fortawesome/free-solid-svg-icons'
+import { useAddNewNoteMutation } from './notesApiSlice'
 
 const NewNoteForm = ({ users }) => {
   //
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   //
   const [addNewNote, { isLoading, isSuccess, isError, error }] =
-    useAddNewNoteMutation();
+    useAddNewNoteMutation()
   //
   // state vars
-  const [title, setTitle] = useState('');
-  const [text, setText] = useState('');
-  const [userId, setUserId] = useState(users[0].id);
+  const [title, setTitle] = useState('')
+  const [text, setText] = useState('')
+  const [userId, setUserId] = useState(users[0].id)
   //
   useEffect(() => {
     if (isSuccess) {
-      setTitle('');
-      setText('');
-      setUserId('');
-      navigate('/dash/notes');
+      setTitle('')
+      setText('')
+      setUserId('')
+      navigate('/dash/notes')
     }
-  }, [isSuccess, navigate]);
+  }, [isSuccess, navigate])
 
-  const onTitleChanged = e => setTitle(e.target.value);
-  const onTextChanged = e => setText(e.target.value);
-  const onUserIdChanged = e => setUserId(e.target.value);
+  const onTitleChanged = e => setTitle(e.target.value)
+  const onTextChanged = e => setText(e.target.value)
+  const onUserIdChanged = e => setUserId(e.target.value)
   //
   // alternative to calling '&' a bunch. All in an Array and use '.every'
-  const canSave = [title, text, userId].every(Boolean) && !isLoading;
+  const canSave = [title, text, userId].every(Boolean) && !isLoading
 
   const onSaveNoteClicked = async e => {
-    e.preventDefault();
+    e.preventDefault()
     if (canSave) {
-      await addNewNote({ user: userId, title, text });
-      // navigate('/dash/notes');
+      console.log('after note CLICKED...')
+      await addNewNote({ user: userId, title, text })
+      console.log('after note SAVED...')
+      // navigate('/dash/notes')
     }
-  };
+  }
   //
   const options = users.map(user => {
     return (
@@ -46,13 +48,13 @@ const NewNoteForm = ({ users }) => {
         {' '}
         {user.username}
       </option>
-    );
-  });
+    )
+  })
 
   //classes that we may or may not want to apply
-  const errClass = isError ? 'errmsg' : 'offscreen';
-  const validTitleClass = !title ? 'form__input--incomplete' : '';
-  const validTextClass = !text ? 'form__input--incomplete' : '';
+  const errClass = isError ? 'errmsg' : 'offscreen'
+  const validTitleClass = !title ? 'form__input--incomplete' : ''
+  const validTextClass = !text ? 'form__input--incomplete' : ''
 
   const content = (
     <>
@@ -108,9 +110,9 @@ const NewNoteForm = ({ users }) => {
         </select>
       </form>
     </>
-  );
+  )
 
-  return content;
-};
+  return content
+}
 
-export default NewNoteForm;
+export default NewNoteForm
