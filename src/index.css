@@ -145,17 +145,12 @@ a:focus-visible {
 }
 .public h1 {
   font-family: 'Agdasima', sans-serif;
+  color: orange;
   font-size: 34pt;
 }
-/* .public__main,
-.login {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: var(--BGCOLOR);
-  padding: 0 0.5em;
-  border-bottom: 3px solid dodgerblue;
-} */
+.public__main {
+  padding-top: 30px;
+}
 
 .public__main,
 .login {
@@ -164,7 +159,7 @@ a:focus-visible {
   align-items: center;
   flex-grow: 1;
   border-bottom: 3px solid dodgerblue;
-  padding: 0 0.5em;
+  padding-top: 30px;
 }
 
 .public__addr {
