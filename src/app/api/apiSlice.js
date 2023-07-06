@@ -3,7 +3,7 @@ import { setCredentials } from '../../features/auth/authSlice'
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: 'http://localhost:3500',
-  baseUrl: 'https://scottnotes-api.onrender.com/',
+  baseUrl: 'https://scottnotes-api.onrender.com',
 
   // set the 'include' keyword to include token
   credentials: 'include',
