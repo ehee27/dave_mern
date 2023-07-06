@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Oswald:wght@300&family=Kanit:wght@200&family=Staatliches&family=Orbit&&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Agdasima&family=Oswald:wght@300&family=Kanit:wght@200&family=Staatliches&family=Orbit&&family=Russo+One&display=swap');
 
 * {
   margin: 0;
@@ -43,6 +43,7 @@
 
 .nowrap {
   white-space: nowrap;
+  color: orange;
 }
 
 .icon-button {
@@ -70,7 +71,8 @@
 body {
   /* font-family: 'Nunito', sans-serif; */
   /* font-family: 'Oswald', sans-serif; */
-  font-family: 'montseratt', sans-serif;
+  /* font-family: 'montseratt', sans-serif; */
+  font-family: Arial, Helvetica, sans-serif;
 
   min-height: 100vh;
   background-color: var(--BGCOLOR);
@@ -118,24 +120,32 @@ a:focus-visible {
 .welcome {
   display: flex;
   flex-direction: column;
+
   gap: 1rem;
 }
 
 .public {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
   padding: 0.5em;
   flex-grow: 1;
 }
 .public header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 1;
   background-color: var(--BGCOLOR);
-  padding: 0 0.5em;
+  /* padding: 0 0.5em; */
+  padding: 5px;
   border-bottom: 3px solid dodgerblue;
 }
 .public h1 {
-  font-family: 'Russo One', sans-serif;
-  font-size: 24pt;
+  font-family: 'Agdasima', sans-serif;
+  font-size: 34pt;
 }
 /* .public__main,
 .login {
@@ -149,13 +159,39 @@ a:focus-visible {
 
 .public__main,
 .login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
   border-bottom: 3px solid dodgerblue;
   padding: 0 0.5em;
 }
 
 .public__addr {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   margin-top: 1em;
+}
+.public footer {
+  display: flex;
+  flex-direction: row;
+}
+.public button {
+  background-color: rgba(31, 31, 31, 0.765);
+  border: 2pt solid rgba(31, 31, 31, 0.765);
+  color: white;
+  /* border: none; */
+  border-radius: 0.25rem;
+  padding: 12px;
+  font-size: 12pt;
+}
+.public button:hover {
+  transition: 0.3s ease-in;
+  background-color: grey;
+  border: 2pt solid orange;
+  padding: 12px;
+  cursor: pointer;
 }
 
 .welcome a::before {
@@ -163,6 +199,10 @@ a:focus-visible {
 }
 .welcome .icon {
   margin-right: 10px;
+}
+.welcome h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24pt;
 }
 
 /* || DASH HEADER, CONTAINER & FOOTER */
@@ -172,12 +212,13 @@ a:focus-visible {
   top: 0;
   z-index: 1;
   background-color: var(--BGCOLOR);
-  padding: 0 0.5em;
-  /* border-bottom: 1px solid var(--BORDER-COLOR); */
+
   border-bottom: 3px solid dodgerblue;
 }
 .dash-header__title {
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Agdasima', sans-serif;
+  font-size: 34pt;
+  color: orange;
 }
 
 .dash-header__container {
@@ -185,6 +226,8 @@ a:focus-visible {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  padding-left: 5px;
+  padding-bottom: 10px;
 }
 
 .dash-header__nav {
@@ -195,7 +238,7 @@ a:focus-visible {
 }
 
 .dash-container {
-  padding: 0.75em 0.5em 0.5em;
+  padding: 1.5em 1.5em 1em;
   flex-grow: 1;
 }
 
@@ -203,8 +246,7 @@ a:focus-visible {
   font-size: 1rem;
   position: sticky;
   bottom: 0;
-  z-index: 1;
-  /* background-color: var(--FOOTER-COLOR); */
+  /* z-index: 1; */
   padding: 1em;
   background-color: var(--BGCOLOR);
   border-top: 3px solid dodgerblue;
@@ -218,6 +260,17 @@ a:focus-visible {
   font-size: 1rem;
   width: auto;
   height: auto;
+}
+.dash-footer .footer-elements {
+}
+.dash-footer .footer-username {
+  font-family: 'Agdasima', sans-serif;
+  font-size: 24pt;
+  color: orange;
+  padding-right: 20px;
+}
+.dash-footer .footer-status {
+  font-size: 13pt;
 }
 
 /* || TABLES - GENERAL */

@@ -25,9 +25,9 @@ const Welcome = () => {
   const pageContent = (
     <section className="welcome">
       <p>{today}</p>
-      <h1>
+      <h3>
         Welcome <span style={{ color: 'orange' }}>{username}</span>
-      </h1>
+      </h3>
       <p>
         <Link to="/dash/notes">
           <FontAwesomeIcon icon={faFolderOpen} className="icon" />

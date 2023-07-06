@@ -27,10 +27,11 @@ const DashFooter = () => {
   const pageContent = (
     <footer className="dash-footer">
       {goHomeButton}
-      <p>
-        Hello: <span style={{ color: 'orange' }}>{username}</span>
-      </p>
-      <p>Status: {status}</p>
+      <div className="footer-elements">
+        <span className="footer-username">{username}</span>
+
+        <span className="footer-status">Status: {status}</span>
+      </div>
     </footer>
   )
   return pageContent
