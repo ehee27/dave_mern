@@ -6,7 +6,10 @@ const Public = () => {
     <section className="public">
       <header>
         <h1>
-          Welcome to <span className="nowrap">TwoSeven Technical</span>
+          Welcome to{' '}
+          <span className="nowrap">
+            <span className="highlight">TwoSeven</span> Technical
+          </span>
         </h1>
       </header>
       <main className="public__main">
@@ -18,7 +21,7 @@ const Public = () => {
           <a href="tel:+15555555555">(913) 123-4567</a>
         </address>
         <br />
-        <p>Owner: Scott Lucas</p>
+        <p>info@twoseventech.com</p>
       </main>
       <footer>
         <Link to="/login">

@@ -43,7 +43,6 @@
 
 .nowrap {
   white-space: nowrap;
-  color: orange;
 }
 
 .icon-button {
@@ -145,8 +144,11 @@ a:focus-visible {
 }
 .public h1 {
   font-family: 'Agdasima', sans-serif;
-  color: orange;
+  /* color: orange; */
   font-size: 34pt;
+}
+.public h1 .highlight {
+  color: orange;
 }
 .public__main {
   padding-top: 30px;
@@ -213,6 +215,8 @@ a:focus-visible {
 .dash-header__title {
   font-family: 'Agdasima', sans-serif;
   font-size: 34pt;
+}
+.dash-header__title .highlight {
   color: orange;
 }
 

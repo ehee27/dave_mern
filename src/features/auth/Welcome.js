@@ -26,7 +26,7 @@ const Welcome = () => {
     <section className="welcome">
       <p>{today}</p>
       <h3>
-        Welcome <span style={{ color: 'orange' }}>{username}</span>
+        Welcome <span>{username}</span>
       </h3>
       <p>
         <Link to="/dash/notes">
